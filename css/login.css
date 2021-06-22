@@ -116,7 +116,7 @@ body {
     border: none;
     width: 45%;
     font-weight: 700;
-    cursor: pointer;
+    cursor: pointer; 
 }
 
 .btn-sign-up {
