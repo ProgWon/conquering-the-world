@@ -15,7 +15,7 @@
 
 <body>
   <div class="whiteout"></div>
-  
+
   <main class="main">
     <article class="login-wrapper">
       <header class="login-header">
@@ -56,7 +56,31 @@
     </article>
 
     <article class="map-wrapper">
-      <object data="./images/worldHigh.svg" type="image/svg+xml"></object>
+      <div class="custom-select-wrapper">
+        <div class="custom-select">
+          <div class="custom-select-trigger" tabindex="0">
+            <span>KR</span>
+            <div class="arrow"></div>
+          </div>
+
+          <ul class="custom-options">
+            <li class="custom-option selected" data-value="KR">KR</li>
+            <li class="custom-option" data-value="JP">JP</li>
+            <li class="custom-option" data-value="US">US</li>
+          </ul>
+        </div>
+
+        <button class="custom-select-btn">
+          <i class="fas fa-plane fa-2x"></i>
+        </button>
+      </div>
+
+      <object class="map-obj" data="./images/worldHigh.svg" type="image/svg+xml"></object>
+
+      <button class="back-btn" title="뒤로 가기" disabled>
+        <i class="fas fa-arrow-left fa-2x"></i>
+        <span>BACK</span>
+      </button>
     </article>
   </main>
 
