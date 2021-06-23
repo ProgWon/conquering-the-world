@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,700|Noto+Sans+KR');
+@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+/* 팝업을 위한 CSS */
+/* .btn.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 30px;
+  border: 0;
+  background: transparent;
+} */
+
+/* todos */
+
+body {
+  font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+  font-size: 0.9em;
+  color: #58666e;
+  background-color: #1e1d1e;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+}
+
+.memo-modal-title {
+  margin: 30px 0;
+  font-size: 3.5em;
+  font-weight: 100;
+  text-align: center;
+  color: #07151a;
+}
+
+p {
+  margin: 30px 0;
+  font-size: 1.5em;
+  font-weight: 100;
+  color: #07151a;
+}
+
+/* .input-todo  */
+.input-todo {
+  display: block;
+  width: 100%;
+  height: 45px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  color: #555;
+  border: 1px solid #ccc;
+  border-color: #e7ecee;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.input-todo:disabled {
+  color: #555;
+  border: 1px solid rgb(247, 0, 0);
+  border-color: #ff0000;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.input-todo:focus {
+  border-color: #23b7e5;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.input-todo::-webkit-input-placeholder {
+  color: #999;
+}
+
+.todos {
+  margin-top: 20px;
+}
+
+/* .todo-item */
+.todo-item {
+  position: relative;
+  height: 50px;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-color: #e7ecee;
+  list-style: none;
+}
+
+.todo-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.todo-item:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkbox + label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translate3d(0, -50%, 0);
+  display: inline-block;
+  width: 90%;
+  line-height: 2em;
+  padding-left: 35px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox + label:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate3d(0, -50%, 0);
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #cfdadd;
+}
+
+.checkbox:checked + label:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  transform: translate3d(0, -50%, 0);
+  width: 10px;
+  height: 10px;
+  background-color: #23b7e5;
+}
+
+.remove-todo {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  cursor: pointer;
+  transform: translate3d(0, -50%, 0);
+}
+
+.todo-item:hover > .remove-todo {
+  display: block;
+}
+
+.btn:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+#canvas {
+  opacity: 0.5;
+}
+.container {
+  max-width: 1300px;
+  max-height: 700px;
+  height: 700px;
+  margin: auto;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  display: none;
+}
+
+button {
+  border: none;
+  background-color: white;
+}
+
+/* 메모 버튼 */
+.memo {
+  position: absolute;
+  top: 70%;
+  left: 55%;
+}
+
+.memo-toggle-popup {
+  width: 500px;
+  height: 120px;
+  line-height: 1.5;
+  border-radius: 3px;
+  outline: none;
+  background-color: #c4c4c4;
+  border-color: #ccc;
+  cursor: pointer;
+  border: none;
+  color: #ffffff;
+  padding: 15px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2.2em;
+}
+
+/* 메모 모달 */
+
+.memo-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 700px;
+  background-color: #fff;
+  padding: 20px 40px;
+  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2),
+    0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  z-index: 1000;
+  display: none;
+}
+
+/* 애니메이션 */
+.active {
+  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.active .description-modal-background .description-modal,
+.active .memo-modal-background .memo-modal {
+  transform: scale(0);
+  animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes unfoldIn {
+  0% {
+    transform: translate(-50%, -50%) scaleX(0) scaleY(0.005);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scaleX(1) scaleY(0.005);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scaleY(1) scaleX(1);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+/* fold out animation */
+.deactive {
+  transform: translate(-50%, -50%) scale(1);
+  animation: unfoldOut 0.8s 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes unfoldOut {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scaleX(1) scaleY(0.005);
+  }
+  100% {
+    transform: translate(-50%, -50%) scaleX(0) scaleY(0.005);
+  }
+}
+
+.description-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 700px;
+  background-color: #fff;
+  padding: 20px 40px;
+  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2),
+    0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  z-index: 1000;
+  display: none;
+}
+
+.description {
+  position: absolute;
+  top: 20%;
+  left: 55%;
+  width: 500px;
+  height: 400px;
+  background-color: #c4c4c4;
+}
+
+.description-egg-img {
+  display: block;
+  width: 80px;
+  height: 80px;
+  background-color: #c4c4c4;
+}
+
+.description-egg-btn {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background-color: #c4c4c4;
+  padding: 0;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>memo</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/memo.css" />
+  </head>
+
+  <body>
+    <div class="overlay"></div>
+    <!-- 디스크립션 모달 -->
+    <div class="description-container">
+      <div class="description-modal-container">
+        <div class="description-popup">
+          <div class="description-modal-background">
+            <div class="description-modal">
+              dddㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 메모 모달 -->
+    <div class="memo-container">
+      <div class="memo-modal-container">
+        <div class="memo-popup">
+          <button type="button" class="btn close">
+            <i class="bx bx-x">X</i>
+          </button>
+          <div class="memo-modal-background">
+            <div class="memo-modal">
+              <form action="" class="memo-form">
+                <label for="" class="memo-modal-title"
+                  >[Country] 를 정복하러 가자<span>&#x1F680;</span></label
+                >
+                <p>20자까지 입력 가능해요!</p>
+                <input class="input-todo" autofocus maxlength="20" />
+              </form>
+              <ul class="todos"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- description 버튼 -->
+      <div class="description">
+        <table>
+          <tbody class="description-contents">
+            <tr>
+              <th>수도</th>
+              <td>Smith</td>
+            </tr>
+            <tr>
+              <th>인구</th>
+              <td>Jackson</td>
+            </tr>
+            <tr>
+              <th>통화</th>
+              <td>Doe</td>
+            </tr>
+            <tr>
+              <th>GDP</th>
+              <td>Doe</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="description-egg-btn">
+          <img
+            class="description-egg-img"
+            src="../images/_Pngtree_egg_4180797-removebg-preview.png"
+            onmouseover="this.src ='../images/ClipartKey_3245073__1_-removebg-preview.png'"
+            onmouseout="this.src ='../images/_Pngtree_egg_4180797-removebg-preview.png'"
+            alt=""
+          />
+        </button>
+      </div>
+      <!-- 메모 버튼 -->
+      <div class="memo">
+        <button class="btn memo-toggle-popup">memo</button>
+      </div>
+    </div>
+
+    <!-- <object
+      class="map-object"
+      data="../images/worldHigh.svg"
+      type="image/svg+xml"
+    ></object> -->
+    <script src="../js/memo.js"></script>
+  </body>
+</html>
