@@ -1,0 +1,16 @@
+body {
+  background: #1e1d1e;
+}
+
+
+.map-object {
+  display: block;
+
+  margin: 0 auto;
+}
+
+.search-form {
+  position: absolute;
+  top : 20px;
+  right: 40px;
+}

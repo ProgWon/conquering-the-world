@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- (c) ammap.com | SVG map of World - High -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap"
+<<<<<<< HEAD
 	xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1009" height="665">
+=======
+	xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1009.11" height="665">
+>>>>>>> 6ab49806562c12a7b75af5371062fa20c9584c72
 	<defs>
 		<style type="text/css">
 			.land {
@@ -9,7 +13,7 @@
 				fill-opacity: 1;
 				stroke: #1d1e1d;
 				stroke-opacity: 1;
-				stroke-width: 0.5;
+				stroke-width: 0.1;
 			}
 
 			[d]:hover {
