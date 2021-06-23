@@ -3,6 +3,24 @@ body {
     background-color: #1E1D1E;
 }
 
+.main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-wrapper {
+    position: absolute;
+    transform: translateX(-50%) translateY(-10%);
+    left: 50%;
+}
+
+.map-object {
+    display: block;
+    margin: 0 auto;
+}
+
 .a11y {
     position: absolute;
     width: 1px;
@@ -15,24 +33,24 @@ body {
 }
 
 .header {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    background-color: rgba(60, 60, 60, 0.6);
+    background-color: #CCCCCC;
     text-align: center;
     margin: 30px auto;
-    padding: 10px 0;
-    color: rgba(255, 255, 255, 0.6);
-    width: 500px;
+    color: #181818;
+    width: 490px;
+    padding: 20px;
     border-radius: 10px;
 }
 
 .login-form {
-    width: 360px;
+    width: 450px;
     margin: 40px auto;
-    background-color: rgba(60, 60, 60, 0.6);
+    background-color: #CCCCCC;
     text-align: center;
     color: #181818;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
 }
 
@@ -41,13 +59,13 @@ body {
 .user-password-input,
 .btn-login,
 .btn-sign-up {
-    background-color: rgba(100, 100, 100, 0.4);
-    padding: 10px;
+    background-color: rgba(100, 100, 100, 0.2);
+    padding:15px;
     border-radius: 5px;
 }
 
 .login-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     width: 40%;
 }
@@ -56,12 +74,20 @@ body {
     border: none;
     margin: 20px 0;
     width: 80%;
+    font-size: 1rem;
+    padding-left: 40px;
 }
 
 .user-id,
-.user-password
- {
+.user-password {
     position: relative;
+}
+
+.fa-passport {
+    position: absolute;
+    left: 25px;
+    top: 28px;
+    opacity: 1;
 }
 
 #userIdError {
@@ -83,6 +109,14 @@ body {
     border: none;
     margin-bottom: 40px;
     width: 80%;
+    font-size: 1rem;
+    padding-left: 40px;
+}
+
+.fa-lock {
+    position: absolute;
+    left: 25px;
+    top: 7px;
 }
 
 #userPasswordError,
@@ -116,7 +150,8 @@ body {
     border: none;
     width: 45%;
     font-weight: 700;
-    cursor: pointer; 
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 .btn-sign-up {
@@ -124,4 +159,5 @@ body {
     width: 45%;
     font-weight: 700;
     cursor: pointer;
+    font-size: 1rem;
 }
