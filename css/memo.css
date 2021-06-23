@@ -190,6 +190,7 @@ button {
 
 /* 메모 버튼 */
 .memo {
+  display: none;
   position: absolute;
   top: 70%;
   left: 55%;
@@ -300,6 +301,7 @@ button {
 }
 
 .description {
+  display: none;
   position: absolute;
   top: 20%;
   left: 55%;
