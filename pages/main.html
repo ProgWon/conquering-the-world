@@ -12,12 +12,19 @@
 
 <body>
   <main class="main">
-    <object class="map-object" data="../images/worldHigh.svg" type="image/svg+xml"></object>
+    <form class="search-form">
+      <select class="country-list">
+        <option value="KR">한국</option>
+        <option value="JP">일본</option>
+        <option value="US">미국</option>
+      </select>
+      <button>Search</button>
+    </form>
 
-    <section class="search-form"></section>
+    <object class="map-object" data="../images/worldHigh.svg" type="image/svg+xml"></object>
   </main>
 
-  <script src="../js/d3.min.js"></script>
+  <script src="../js/dropdown.js"></script>
   <script src="../js/main.js"></script>
 </body>
 

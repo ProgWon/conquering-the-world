@@ -1,9 +1,8 @@
 // variables
 const mapObject = document.querySelector('.map-object');
+const serviceCountries = ['KR', 'JP', 'US'];
 
 mapObject.onload = () => {
-  const serviceCountries = ['KR', 'JP', 'US'];
-
   const mapWidth = mapObject.clientWidth;
   const mapHeight = mapObject.clientHeight;
 
@@ -21,6 +20,11 @@ mapObject.onload = () => {
     return [rect.width / 2 + rect.x, rect.height / 2 + rect.y];
   };
 
+  const getZoomRatio = $target => {
+    const rectWidth = $target.getBoundingClientRect().width;
+    return rectWidth < 50 ? 25 : rectWidth < 200 ? 5 : 2;
+  }
+
   const hideOtherCountries = $target => {
     $countries.forEach($country => {
       $country.style.transition = '0.75s';
@@ -30,17 +34,22 @@ mapObject.onload = () => {
 
   const zoomMap = $target => {
     const [targetCenterX, targetCenterY] = getCountryCenterPos($target);
-    const moveX = mapWidth / 2 - targetCenterX;
-    const moveY = mapHeight / 2 - targetCenterY;
+    const zoomRatio = getZoomRatio($target);
+    const moveX = mapWidth / 2 - targetCenterX * zoomRatio;
+    const moveY = mapHeight / 2 - targetCenterY * zoomRatio;
 
-    hideOtherCountries($target);
     $g.style.transition = '1s';
-    $g.style.transform = `translate3D(${moveX}px, ${moveY}px, 0)`;
-    // 여기부터 동건이 코드
+    $g.style.transform = `translate3D(${moveX}px, ${moveY}px, 0) scale(${zoomRatio})`;
+
     setTimeout(() => {
-      $g.style.transform = `scale(2.75)`
-    }, 2000)
+      hideOtherCountries($target);
+    }, 1000);
   };
+
+  document.querySelector('.search-form').onsubmit = e => {
+    e.preventDefault();
+    zoomMap($serviceCountries[e.target.querySelector('.country-list').value]);
+  }
 
   // event handlers
   $svg.onclick = e => {
