@@ -1,0 +1,188 @@
+@font-face {
+  font-family: 'orbitron';
+  src: url(../fonts/Orbitron-VariableFont_wght.ttf);
+}
+
+body {
+  font-family: 'orbitron';
+}
+
+/* common */
+.a11y {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  visibility: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+}
+
+.main {
+  background: #1d1e1d;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px gray;
+}
+
+.whiteout {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* login-wrapper */
+.login-wrapper {
+  position: absolute;
+}
+
+.login-header {
+  background-color: #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 3px 3px #181818;
+  opacity: 0.9;
+
+  width: 490px;
+  padding: 20px;
+
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 3px;
+  color: #181818;
+}
+
+.login-form {
+  background: #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 3px 3px #181818;
+  opacity: 0.9;
+
+  margin: 40px 0;
+
+  text-align: center;
+  color: #181818;
+  padding: 40px;
+}
+
+.login-form-common {
+  background-color: rgba(100, 100, 100, 0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 3px 3px #181818;
+
+  padding: 15px;
+
+  font-family: "orbitron";
+}
+
+.login-form-title {
+  width: 40%;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  padding: 15px 40px;
+}
+
+.user-id-wrapper,
+.user-pw-wrapper {
+  position: relative;
+}
+
+.user-id-input {
+  border: none;
+  width: 80%;
+
+  margin: 20px 0;
+  padding-left: 40px;;
+
+  font-size: 1rem;
+}
+
+.fa-passport {
+  position: absolute;
+  left: 25px;
+  top: 28px;
+}
+
+.user-pw-input {
+  border: none;
+  width: 80%;
+
+  padding-left: 40px;
+  margin-bottom: 40px;
+
+  font-size: 1rem;
+}
+
+.fa-lock {
+  position: absolute;
+  left: 25px;
+  top: 7px;
+}
+
+.user-id-input::placeholder,
+.user-pw-input::placeholder {
+  color: #181818;
+  font-weight: 700;
+}
+
+#userIdError {
+  position: absolute;
+  left: 27px;
+  top: 75px;
+
+  opacity: 0;
+}
+
+#userPasswordError,
+#invalidError {
+    position: absolute;
+    left: 27px;
+    top: 55px;
+
+    opacity: 0;
+}
+
+.error-message {
+  display: inline-block;
+  
+  color: rgb(255, 0, 0);
+  font-size: 0.7rem;
+}
+
+.login-form-btns {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0 auto;
+  width: 85%;
+}
+
+.form-btn {
+  border: none;
+  width: 45%;
+
+  font-weight: 700;
+  font-size: 1rem;
+
+  cursor: pointer;
+}
+
+
+/* map-wrapper */
+.map-wrapper {
+  
+}
