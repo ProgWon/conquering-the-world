@@ -78,7 +78,108 @@ const descriptions = (() => {
 // variables
 const mapObject = document.querySelector('.map-object');
 const serviceCountries = ['KR', 'JP', 'US'];
+const countryName = { KR: 'Korea', JP: 'Japan', US: 'U.S.A' };
 let countyState = 'KR';
+
+// Todos
+const todos = (() => {
+  const $todos = document.querySelector('.todos');
+  const $inputTodo = document.querySelector('.input-todo');
+  let todos = [];
+
+  const render = () => {
+    $todos.innerHTML = [...todos]
+      .filter(todo => todo.code === countyState)
+      .reduce((html, { id, content, completed }) => {
+        // eslint-disable-next-line no-param-reassign
+        html += `
+        <li id="${id}" class="todo-item">
+          <input id="ck-${id}" class="checkbox" type="checkbox" ${
+          completed ? 'checked' : ''
+        }>
+          <label for="ck-${id}">${content}</label>
+          <i class="remove-todo far fa-times-circle"></i>
+        </li>`;
+        return html;
+      }, '');
+    // $todos.innerHTML = todos.reduce((html, { id, content, completed }) => {
+    //   // eslint-disable-next-line no-param-reassign
+    //   html += `
+    //     <li id="${id}" class="todo-item">
+    //       <input id="ck-${id}" class="checkbox" type="checkbox" ${
+    //     completed ? 'checked' : ''
+    //   }>
+    //       <label for="ck-${id}">${content}</label>
+    //       <i class="remove-todo far fa-times-circle"></i>
+    //     </li>`;
+    //   return html;
+    // }, '');
+  };
+
+  const setTodos = _todos => {
+    todos = _todos;
+
+    if ([...todos].filter(todo => todo.code === countyState).length < 5) {
+      $inputTodo.disabled = false;
+      $inputTodo.placeholder = '';
+    } else {
+      $inputTodo.disabled = true;
+      $inputTodo.placeholder = '아직은 5개까지만 등록할 수 있어요!';
+    }
+
+    render();
+  };
+
+  const generateNextId = () => Math.max(...todos.map(todo => todo.id), 0) + 1;
+
+  const fetchTodos = () => {
+    setTodos(
+      [
+        {
+          id: 1,
+          content: '동건이네 집 벨튀하기',
+          code: 'KR',
+          completed: false
+        },
+        {
+          id: 2,
+          content: '동건이네 집에 총기 난사하기',
+          code: 'US',
+          completed: true
+        },
+        { id: 3, content: '동건이 피살시키기', code: 'JP', completed: false }
+      ].sort((todo1, todo2) => todo2.id - todo1.id)
+    );
+  };
+
+  window.addEventListener('DOMContentLoaded', fetchTodos);
+
+  return {
+    addTodo(content) {
+      setTodos([
+        { id: generateNextId(), content, completed: false, code: countyState },
+        ...todos
+      ]);
+    },
+    toggleTodo(id) {
+      setTodos(
+        todos.map(todo =>
+          todo.id === +id ? { ...todo, completed: !todo.completed } : todo
+        )
+      );
+    },
+    removeTodo(id) {
+      setTodos(todos.filter(todo => todo.id !== +id));
+    },
+    fetch(id) {
+      countyState = id;
+      document.querySelector(
+        '.memo-modal-title'
+      ).textContent = `Let's Conquer ${countryName[id]}!`;
+      setTodos(todos);
+    }
+  };
+})();
 
 const controlSearchForm = (() => {
   const $searchForm = document.querySelector('.custom-select-wrapper');
@@ -183,7 +284,8 @@ mapObject.onload = () => {
   // event handlers
   $svg.onclick = e => {
     if (!(e.target.id in $serviceCountries) || flag) return;
-    countyState = e.target.id;
+
+    todos.fetch(e.target.id);
     zoomMap(e.target);
 
     flag = true;
@@ -295,102 +397,105 @@ document.querySelector('.description-egg-btn').onclick =
   popup.openDescriptionModal;
 document.querySelector('.btn.memo-toggle-popup').onclick = popup.open;
 
-// Todos
-const todos = (() => {
-  const $todos = document.querySelector('.todos');
-  const $inputTodo = document.querySelector('.input-todo');
+// // Todos
+// const todos = (() => {
+//   const $todos = document.querySelector('.todos');
+//   const $inputTodo = document.querySelector('.input-todo');
 
-  let todos = [];
+//   let todos = [];
 
-  const render = () => {
-    console.log(countyState);
-    console.log(todos);
-    console.log([...todos].filter(todo => todo.code === countyState));
-    $todos.innerHTML = [...todos]
-      .filter(todo => todo.code === countyState)
-      .reduce((html, { id, content, completed }) => {
-        // eslint-disable-next-line no-param-reassign
-        html += `
-        <li id="${id}" class="todo-item">
-          <input id="ck-${id}" class="checkbox" type="checkbox" ${
-          completed ? 'checked' : ''
-        }>
-          <label for="ck-${id}">${content}</label>
-          <i class="remove-todo far fa-times-circle"></i>
-        </li>`;
-        return html;
-      }, '');
-    // $todos.innerHTML = todos.reduce((html, { id, content, completed }) => {
-    //   // eslint-disable-next-line no-param-reassign
-    //   html += `
-    //     <li id="${id}" class="todo-item">
-    //       <input id="ck-${id}" class="checkbox" type="checkbox" ${
-    //     completed ? 'checked' : ''
-    //   }>
-    //       <label for="ck-${id}">${content}</label>
-    //       <i class="remove-todo far fa-times-circle"></i>
-    //     </li>`;
-    //   return html;
-    // }, '');
-  };
+//   const render = () => {
+//     console.log(countyState);
+//     console.log(todos);
+//     console.log([...todos].filter(todo => todo.code === countyState));
+//     $todos.innerHTML = [...todos]
+//       .filter(todo => todo.code === countyState)
+//       .reduce((html, { id, content, completed }) => {
+//         // eslint-disable-next-line no-param-reassign
+//         html += `
+//         <li id="${id}" class="todo-item">
+//           <input id="ck-${id}" class="checkbox" type="checkbox" ${
+//           completed ? 'checked' : ''
+//         }>
+//           <label for="ck-${id}">${content}</label>
+//           <i class="remove-todo far fa-times-circle"></i>
+//         </li>`;
+//         return html;
+//       }, '');
+//     // $todos.innerHTML = todos.reduce((html, { id, content, completed }) => {
+//     //   // eslint-disable-next-line no-param-reassign
+//     //   html += `
+//     //     <li id="${id}" class="todo-item">
+//     //       <input id="ck-${id}" class="checkbox" type="checkbox" ${
+//     //     completed ? 'checked' : ''
+//     //   }>
+//     //       <label for="ck-${id}">${content}</label>
+//     //       <i class="remove-todo far fa-times-circle"></i>
+//     //     </li>`;
+//     //   return html;
+//     // }, '');
+//   };
 
-  const setTodos = _todos => {
-    todos = _todos;
+//   const setTodos = _todos => {
+//     todos = _todos;
 
-    if ([...todos].filter(todo => todo.code === countyState).length < 5) {
-      $inputTodo.disabled = false;
-      $inputTodo.placeholder = '';
-    } else {
-      $inputTodo.disabled = true;
-      $inputTodo.placeholder = '아직은 5개까지만 등록할 수 있어요!';
-    }
+//     if ([...todos].filter(todo => todo.code === countyState).length < 5) {
+//       $inputTodo.disabled = false;
+//       $inputTodo.placeholder = '';
+//     } else {
+//       $inputTodo.disabled = true;
+//       $inputTodo.placeholder = '아직은 5개까지만 등록할 수 있어요!';
+//     }
 
-    render();
-  };
+//     render();
+//   };
 
-  const generateNextId = () => Math.max(...todos.map(todo => todo.id), 0) + 1;
+//   const generateNextId = () => Math.max(...todos.map(todo => todo.id), 0) + 1;
 
-  const fetchTodos = () => {
-    setTodos(
-      [
-        {
-          id: 1,
-          content: '동건이네 집 벨튀하기',
-          code: 'KR',
-          completed: false
-        },
-        {
-          id: 2,
-          content: '동건이네 집에 총기 난사하기',
-          code: 'US',
-          completed: true
-        },
-        { id: 3, content: '동건이 피살시키기', code: 'JP', completed: false }
-      ].sort((todo1, todo2) => todo2.id - todo1.id)
-    );
-  };
+//   const fetchTodos = () => {
+//     setTodos(
+//       [
+//         {
+//           id: 1,
+//           content: '동건이네 집 벨튀하기',
+//           code: 'KR',
+//           completed: false
+//         },
+//         {
+//           id: 2,
+//           content: '동건이네 집에 총기 난사하기',
+//           code: 'US',
+//           completed: true
+//         },
+//         { id: 3, content: '동건이 피살시키기', code: 'JP', completed: false }
+//       ].sort((todo1, todo2) => todo2.id - todo1.id)
+//     );
+//   };
 
-  window.addEventListener('DOMContentLoaded', fetchTodos);
+//   window.addEventListener('DOMContentLoaded', fetchTodos);
 
-  return {
-    addTodo(content) {
-      setTodos([
-        { id: generateNextId(), content, completed: false, code: countyState },
-        ...todos
-      ]);
-    },
-    toggleTodo(id) {
-      setTodos(
-        todos.map(todo =>
-          todo.id === +id ? { ...todo, completed: !todo.completed } : todo
-        )
-      );
-    },
-    removeTodo(id) {
-      setTodos(todos.filter(todo => todo.id !== +id));
-    }
-  };
-})();
+//   return {
+//     addTodo(content) {
+//       setTodos([
+//         { id: generateNextId(), content, completed: false, code: countyState },
+//         ...todos
+//       ]);
+//     },
+//     toggleTodo(id) {
+//       setTodos(
+//         todos.map(todo =>
+//           todo.id === +id ? { ...todo, completed: !todo.completed } : todo
+//         )
+//       );
+//     },
+//     removeTodo(id) {
+//       setTodos(todos.filter(todo => todo.id !== +id));
+//     },
+//     fetch() {
+//       render();
+//     }
+//   };
+// })();
 
 const $inputTodo = document.querySelector('.input-todo');
 const $todos = document.querySelector('.todos');
