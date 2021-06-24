@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WORLD TOUR GUIDE</title>
+
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="whiteout"></div>
+
+  <main class="main">
+    <article class="login-wrapper">
+      <header class="login-header">
+        <h2 class="login-title ">WORLD TOUR GUIDE</h2>
+      </header>
+
+      <form class="login-form">
+        <fieldset>
+          <legend class="login-form-title login-form-common">WELCOME</legend>
+
+          <div class="user-id-wrapper">
+            <input type="text" class="user-id-input login-form-common" id="userId" namd="userId"
+              placeholder="Username" />
+            <label for="userId" class="a11y">아이디</label>
+            <span>
+              <i class="fas fa-passport fa-2x"></i>
+            </span>
+            <span class="error-message" id="userIdError">아이디를 입력해 주세요.</span>
+          </div>
+
+          <div class="user-pw-wrapper">
+            <input type="password" class="user-pw-input login-form-common" name="userPW" id="userPW"
+              placeholder="Password" />
+            <label for="userPW" class="a11y">비밀번호</label>
+            <span>
+              <i class="fas fa-lock fa-2x"></i>
+            </span>
+            <span class="error-message" id="userPasswordError">비밀번호를 입력해 주세요.</span>
+            <span class="error-message" id="invalidError">아이디 혹은 비밀번호를 확인해 주세요.</span>
+          </div>
+
+          <div class="login-form-btns">
+            <button type="submit" class="form-btn login-form-common">LOGIN</button>
+            <button type="submit" class="form-btn login-form-common">SIGN UP</button>
+          </div>
+        </fieldset>
+      </form>
+    </article>
+
+    <article class="map-wrapper">
+      <div class="custom-select-wrapper">
+        <div class="custom-select">
+          <div class="custom-select-trigger" tabindex="0">
+            <span>KR</span>
+            <div class="arrow"></div>
+          </div>
+
+          <ul class="custom-options">
+            <li class="custom-option selected" data-value="KR">KR</li>
+            <li class="custom-option" data-value="JP">JP</li>
+            <li class="custom-option" data-value="US">US</li>
+          </ul>
+        </div>
+
+        <button class="custom-select-btn">
+          <i class="fas fa-plane fa-2x"></i>
+        </button>
+      </div>
+
+      <object class="map-obj" data="./images/worldHigh.svg" type="image/svg+xml"></object>
+
+      <button class="back-btn" title="뒤로 가기" disabled>
+        <i class="fas fa-arrow-left fa-2x"></i>
+        <span>BACK</span>
+      </button>
+    </article>
+  </main>
+
+  <script src="./js/app.js"></script>
+</body>
+
+</html>
